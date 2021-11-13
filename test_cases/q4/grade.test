@@ -1,0 +1,14 @@
+class: "GradeClassifierTest"
+classifierModule: "naive_bayes"
+classifierClass: "NaiveBayesClassifier"
+
+automaticTuning: "True"
+featureFunction: "enhanced_feature_extractor_digit"
+
+datasetName: "bigDigitData"
+
+# baseline is 79%
+# our solution is 85%
+exactOutput: "False"
+accuracyScale: "1"
+accuracyThresholds: "80 81 82 83 84"
