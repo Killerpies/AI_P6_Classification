@@ -80,9 +80,19 @@ class MiraClassifier:
 
                     predicted_label = score_dictionary.arg_max()
                     if predicted_label != training_labels[i]:
+                        # print(training_labels[i])
+                        # print(predicted_label)
+                        # idk why but the util.counter would not let me do the + 1.0 without me seperating everything
+                        wPrimeMinusW = (self.weights[predicted_label] - self.weights[training_labels[i]])
+                        f = training_data[i]
+                        denominator = 2 * (training_data[i] * training_data[i])
+                        t = (wPrimeMinusW * f) + 1.0 / denominator
+                        minT = min(t, c)
 
-                        # *** YOUR CODE HERE ***
-                        util.raise_not_defined()
+                        for key in training_data[i]:
+                            self.weights[training_labels[i]][key] += training_data[i][key] * minT
+                            self.weights[predicted_label][key] -= training_data[i][key] * minT
+
 
             # Test for best c.
             accuracy = 0
