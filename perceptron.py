@@ -57,10 +57,14 @@ class PerceptronClassifier:
         for iteration in range(self.max_iterations):
             print(f'Starting iteration {iteration}...')
             for i in range(len(training_data)):
-                # BEGIN SOLUTION METHOD
-                "*** YOUR CODE HERE ***"
-                util.raise_not_defined()
-                # END SOLUTION
+                # print(self.classify([training_data[i]]))
+                y = self.classify([training_data[i]])[0]
+                # compare yprime to true label y
+                if y != training_labels[i]:
+                    # true label + training data
+                    self.weights[training_labels[i]] += training_data[i]
+                    # update weight y. subtract training data
+                    self.weights[y] -= training_data[i]
 
     def classify(self, data):
         """

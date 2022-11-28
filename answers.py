@@ -17,4 +17,4 @@ Pieter Abbeel (pabbeel@cs.berkeley.edu).
 def q2():
     """Put your answer to question 2 here"""
     # *** YOUR CODE HERE ***
-    util.raise_not_defined()
+    return 'a'
