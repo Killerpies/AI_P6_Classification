@@ -27,6 +27,7 @@ import perceptron
 import perceptron_pacman
 import samples
 import util
+from game import Directions
 
 TEST_SET_SIZE = 100
 DIGIT_DATUM_WIDTH = 28
@@ -175,9 +176,30 @@ def enhanced_pacman_features(state, action):
     It should return a counter with { <feature name> : <feature value>, ... }
     """
     features = util.Counter()
-    #TODO
-    # *** YOUR CODE HERE ***
-    util.raise_not_defined()
+    # #TODO
+    # # *** YOUR CODE HERE ***
+    # # util.raise_not_defined()
+    pacman = state.get_pacman_position()
+    ghostLocations = state.get_ghost_positions()
+    food = state.get_food().as_list()
+    capsules = state.get_capsules()
+
+    features["STOP"] = int(action == Directions.STOP) * 100
+
+    successor = state.generate_successor(0, action)
+    food_count = successor.get_food().count()
+    features['food_count'] = food_count
+
+    minFood = float("inf")
+    for f in food:
+        minFood = min(minFood, util.manhattan_distance(pacman, f))
+    features['closest_food'] = minFood
+
+    closestGhostDistance = float("inf")
+    for ghostPos in ghostLocations:
+        closestGhostDistance = min(closestGhostDistance, util.manhattan_distance(pacman, ghostPos))
+    features['closest_ghost'] = closestGhostDistance
+
     return features
 
 
