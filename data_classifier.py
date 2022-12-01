@@ -175,6 +175,7 @@ def enhanced_pacman_features(state, action):
     It should return a counter with { <feature name> : <feature value>, ... }
     """
     features = util.Counter()
+    #TODO
     # *** YOUR CODE HERE ***
     util.raise_not_defined()
     return features
